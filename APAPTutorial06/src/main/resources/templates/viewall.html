@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>View All Students</title>
+        <link rel = "stylesheet" href = "/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div th:replace="fragments/fragment :: header"></div><br/>
+        
+ 		<center><h3>All Students</h3></center>
+ 		
+        <table id="allstudents" class="table table-bordered dt-responsive">
+        	<thead>
+        		<tr>
+        			<th class="text-center">No.</th>
+        			<th class="text-center">NPM</th>
+        			<th class="text-center">Name</th>
+        			<th class="text-center">GPA</th>
+        			<th class="text-center">Cum laude</th>
+        			<th class="text-center">Delete</th>
+        			<th class="text-center">Update</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="student,iterationStatus: ${students}">
+        			<td class="text-center" th:text="${iterationStatus.count}">No. 1</td>
+        			<td class="text-center" th:text="${student.npm}">Student NPM</td>
+        			<td class="text-center" th:text="${student.name}">Student Name</td>
+        			<td class="text-center" th:text="${student.gpa}">Student GPA</td>
+        			<td class="text-center" th:text="${student.gpa>=3.49} ? 'Cum Laude!' : 'Sangat Memuaskan!' ">Keterangan GPA</td>
+        			<td class="text-center">
+        				<div class="btn-group">
+        					<a th:href="'/student/delete/' + ${student.npm}" type="button" class="btn btn-danger">Delete Data</a>	
+        				</div>
+        			</td>
+        			<td class="text-center">
+        				<div class="btn-group">
+        					<a th:href="'/student/update/' + ${student.npm}" type="button" class="btn btn-secondary">Update Data</a>	
+        				</div>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table> 
+    </body>
+   <script>
+		$(document).ready(function() {
+			$('#allstudents').DataTable({
+			});
+		});
+	</script>
+	<div th:replace="fragments/fragment :: footer"></div>
+</html>
