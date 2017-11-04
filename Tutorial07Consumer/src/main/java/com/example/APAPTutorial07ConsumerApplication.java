@@ -19,3 +19,4 @@ public class APAPTutorial07ConsumerApplication
 	    return new RestTemplate();
 	}
 }
+

@@ -24,8 +24,10 @@ public class StudentDAOImpl implements StudentDAO{
 	
 	@Override
 	public List<StudentModel> selectAllStudents() {
-		List<StudentModel> students = restTemplate.getForObject("http://localhost:8080/rest/student/viewall",
-				List.class);
+		List<StudentModel> students = 
+				restTemplate.getForObject(
+						"http://localhost:8080/rest/student/viewall",
+						List.class);
 		return students;
 	}
 }
